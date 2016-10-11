@@ -88,6 +88,41 @@ clean: CMakeFiles/DrawPoints.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/DrawPolygon.dir
+
+# All Build rule for target.
+CMakeFiles/DrawPolygon.dir/all:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/depend
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  2
+	@echo "Built target DrawPolygon"
+.PHONY : CMakeFiles/DrawPolygon.dir/all
+
+# Include target in all.
+all: CMakeFiles/DrawPolygon.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/DrawPolygon.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DrawPolygon.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 0
+.PHONY : CMakeFiles/DrawPolygon.dir/rule
+
+# Convenience name for target.
+DrawPolygon: CMakeFiles/DrawPolygon.dir/rule
+.PHONY : DrawPolygon
+
+# clean rule for target.
+CMakeFiles/DrawPolygon.dir/clean:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/clean
+.PHONY : CMakeFiles/DrawPolygon.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/DrawPolygon.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

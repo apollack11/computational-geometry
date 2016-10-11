@@ -116,7 +116,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=DrawPoints
+CMAKE_PROJECT_NAME:STATIC=DrawPolygon
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -171,6 +171,12 @@ CMAKE_USE_RELATIVE_PATHS:BOOL=OFF
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
+CompGeoProject1_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+CompGeoProject1_SOURCE_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
 CompGeo_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
 
 //Value Computed by CMake
@@ -187,6 +193,12 @@ DrawPoints_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
 
 //Value Computed by CMake
 DrawPoints_SOURCE_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+DrawPolygon_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+DrawPolygon_SOURCE_DIR:STATIC=/home/adam/github/computational-geometry
 
 //Path where debug 3rdparty OpenCV dependencies are located
 OpenCV_3RDPARTY_LIB_DIR_DBG:PATH=/usr/local/share/OpenCV/3rdparty/lib

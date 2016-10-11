@@ -76,9 +76,9 @@ int main( void ){
   DrawPoint(atom_image,51,51,"red");
   DrawPoint(atom_image,52,51,"red");
   DrawPoint(atom_image,53,51,"red");
-  DrawPoint(atom_image,51,52,"green");
-  DrawPoint(atom_image,52,52,"green");
-  DrawPoint(atom_image,53,52,"green");
+  DrawPoint(atom_image,51,52,"blue");
+  DrawPoint(atom_image,52,52,"blue");
+  DrawPoint(atom_image,53,52,"blue");
 
   //atom_image[50,50] = {0,255,0};
 
