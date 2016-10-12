@@ -53,48 +53,13 @@ CMAKE_SOURCE_DIR = /home/adam/github/computational-geometry
 CMAKE_BINARY_DIR = /home/adam/github/computational-geometry
 
 #=============================================================================
-# Target rules for target CMakeFiles/DrawPoints.dir
-
-# All Build rule for target.
-CMakeFiles/DrawPoints.dir/all:
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/depend
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  1
-	@echo "Built target DrawPoints"
-.PHONY : CMakeFiles/DrawPoints.dir/all
-
-# Include target in all.
-all: CMakeFiles/DrawPoints.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/DrawPoints.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DrawPoints.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 0
-.PHONY : CMakeFiles/DrawPoints.dir/rule
-
-# Convenience name for target.
-DrawPoints: CMakeFiles/DrawPoints.dir/rule
-.PHONY : DrawPoints
-
-# clean rule for target.
-CMakeFiles/DrawPoints.dir/clean:
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/clean
-.PHONY : CMakeFiles/DrawPoints.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/DrawPoints.dir/clean
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/DrawPolygon.dir
 
 # All Build rule for target.
 CMakeFiles/DrawPolygon.dir/all:
 	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/depend
 	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  1
 	@echo "Built target DrawPolygon"
 .PHONY : CMakeFiles/DrawPolygon.dir/all
 

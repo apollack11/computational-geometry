@@ -1,9 +1,4 @@
 cmake_minimum_required(VERSION 2.8)
-project( DrawPoints )
-find_package( OpenCV REQUIRED )
-add_executable( DrawPoints opencv-example1.cpp )
-target_link_libraries( DrawPoints ${OpenCV_LIBS} )
-
 project( DrawPolygon )
 find_package( OpenCV REQUIRED )
 add_executable( DrawPolygon project1_part1.cpp )

@@ -99,19 +99,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named DrawPoints
-
-# Build rule for target.
-DrawPoints: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 DrawPoints
-.PHONY : DrawPoints
-
-# fast build rule for target.
-DrawPoints/fast:
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/build
-.PHONY : DrawPoints/fast
-
-#=============================================================================
 # Target rules for targets named DrawPolygon
 
 # Build rule for target.
@@ -123,30 +110,6 @@ DrawPolygon: cmake_check_build_system
 DrawPolygon/fast:
 	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/build
 .PHONY : DrawPolygon/fast
-
-opencv-example1.o: opencv-example1.cpp.o
-.PHONY : opencv-example1.o
-
-# target to build an object file
-opencv-example1.cpp.o:
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/opencv-example1.cpp.o
-.PHONY : opencv-example1.cpp.o
-
-opencv-example1.i: opencv-example1.cpp.i
-.PHONY : opencv-example1.i
-
-# target to preprocess a source file
-opencv-example1.cpp.i:
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/opencv-example1.cpp.i
-.PHONY : opencv-example1.cpp.i
-
-opencv-example1.s: opencv-example1.cpp.s
-.PHONY : opencv-example1.s
-
-# target to generate assembly for a file
-opencv-example1.cpp.s:
-	$(MAKE) -f CMakeFiles/DrawPoints.dir/build.make CMakeFiles/DrawPoints.dir/opencv-example1.cpp.s
-.PHONY : opencv-example1.cpp.s
 
 project1_part1.o: project1_part1.cpp.o
 .PHONY : project1_part1.o
@@ -178,13 +141,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... DrawPoints"
 	@echo "... DrawPolygon"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... opencv-example1.o"
-	@echo "... opencv-example1.i"
-	@echo "... opencv-example1.s"
 	@echo "... project1_part1.o"
 	@echo "... project1_part1.i"
 	@echo "... project1_part1.s"
