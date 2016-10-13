@@ -7,19 +7,12 @@
 using namespace cv;
 
 /// Function headers
-void DrawPoint(Mat img, int x, int y, char color[]);
-void DrawLine(Mat img, int x0, int y0, int x1, int y1, char color[]);
-void FloodFill(Mat img, int x, int y, char old_color[], char replacement_color[]);
-bool PointInPolygon(int poly_corners, int poly_x[], int poly_y[], int x, int y);
-
-struct Polygon {
-  int num_points;
-  int points[num_points][2];
-  int points_x[];
-  int points_y[];
-  char outline_color[];
-  char fill_color[];
-};
+void DrawPoint(Mat img, int x, int y, char const* color);
+void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color);
+void FloodFill(Mat img, int x, int y, char const* old_color, char const* replacement_color);
+int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy);
+int *FindPointInPolygon(float point[], int poly_corners, int points_x_vals[], int points_y_vals[]);
+void DrawPolygon(Mat img, int points[][2], int poly_corners, char const* outline_color, char const* fill_color);
 
 /**
  * @function main
@@ -35,6 +28,8 @@ int main(void){
   polygon_image.setTo(cv::Scalar(255,255,255));
   //![create_images]
 
+  // POLYGON 1 Definition
+  // Points
   int polygon1[6][2] = {
     {10,10},
     {40,63},
@@ -43,14 +38,22 @@ int main(void){
     {50,40},
     {10,10}
   };
+  // number of points
+  int poly_corners1 = sizeof(polygon1)/sizeof(polygon1[0]);
 
+  // POLYGON 2 Definition
+  // Points
   int polygon2[4][2] = {
     {200,200},
     {400,200},
     {400,400},
     {200,200}
   };
+  // number of points
+  int poly_corners2 = sizeof(polygon2)/sizeof(polygon2[0]);
 
+  // POLYGON 2 Definition
+  // Points
   int polygon3[5][2] = {
     {700,546},
     {430,500},
@@ -58,54 +61,13 @@ int main(void){
     {600,400},
     {700,546}
   };
+  // number of points
+  int poly_corners3 = sizeof(polygon3)/sizeof(polygon3[0]);
 
-  int polygon1_x_vals[sizeof(polygon1)/sizeof(polygon1[0])];
-  for (int i = 0; i < sizeof(polygon1_x_vals)/sizeof(*polygon1_x_vals); i++) {
-    polygon1_x_vals[i] = polygon1[i][0];
-  }
-  int polygon1_y_vals[sizeof(polygon1)/sizeof(polygon1[0])];
-  for (int i = 0; i < sizeof(polygon1_y_vals)/sizeof(*polygon1_x_vals); i++) {
-    polygon1_y_vals[i] = polygon1[i][1];
-  }
-
-  int polygon2_x_vals[sizeof(polygon2)/sizeof(polygon2[0])];
-  for (int i = 0; i < sizeof(polygon2_x_vals)/sizeof(*polygon2_x_vals); i++) {
-    polygon2_x_vals[i] = polygon2[i][0];
-  }
-  int polygon2_y_vals[sizeof(polygon2)/sizeof(polygon2[0])];
-  for (int i = 0; i < sizeof(polygon2_y_vals)/sizeof(*polygon2_x_vals); i++) {
-    polygon2_y_vals[i] = polygon2[i][1];
-  }
-
-  int polygon3_x_vals[sizeof(polygon3)/sizeof(polygon3[0])];
-  for (int i = 0; i < sizeof(polygon3_x_vals)/sizeof(*polygon3_x_vals); i++) {
-    polygon3_x_vals[i] = polygon3[i][0];
-  }
-  int polygon3_y_vals[sizeof(polygon3)/sizeof(polygon3[0])];
-  for (int i = 0; i < sizeof(polygon3_y_vals)/sizeof(*polygon3_x_vals); i++) {
-    polygon3_y_vals[i] = polygon3[i][1];
-  }
-
-
-  std::cout << "Drawing Polygon 1" << std::endl;
-  for (int i = 0; i < sizeof(polygon1)/sizeof(polygon1[0]) - 1; i++) {
-    DrawLine(polygon_image, polygon1[i][0], polygon1[i][1], polygon1[i+1][0], polygon1[i+1][1], "red");
-  }
-  std::cout << "Drawing Polygon 2" << std::endl;
-  for (int i = 0; i < sizeof(polygon2)/sizeof(polygon2[0]) - 1; i++) {
-    DrawLine(polygon_image, polygon2[i][0], polygon2[i][1], polygon2[i+1][0], polygon2[i+1][1], "blue");
-  }
-  std::cout << "Drawing Polygon 3" << std::endl;
-  for (int i = 0; i < sizeof(polygon3)/sizeof(polygon3[0]) - 1; i++) {
-    DrawLine(polygon_image, polygon3[i][0], polygon3[i][1], polygon3[i+1][0], polygon3[i+1][1], "green");
-  }
-
-  bool point_in_poly1 = PointInPolygon(sizeof(polygon1)/sizeof(polygon1[0]), polygon1_x_vals, polygon1_y_vals, 72, 77);
-  std::cout << "Is the point in poly1? " << point_in_poly1 << std::endl;
-
-  FloodFill(polygon_image, 76, 68, "white", "green");
-  FloodFill(polygon_image, 350, 250, "white", "red");
-  FloodFill(polygon_image, 768, 564, "white", "blue");
+  // DRAWING POLYGONS
+  DrawPolygon(polygon_image, polygon1, poly_corners1, "red", "green");
+  DrawPolygon(polygon_image, polygon2, poly_corners2, "blue", "red");
+  DrawPolygon(polygon_image, polygon3, poly_corners3, "green", "blue");
 
   // display images in windows
   imshow(polygon_window, polygon_image);
@@ -116,7 +78,7 @@ int main(void){
 }
 
 //![drawPoint]
-void DrawPoint(Mat img, int x, int y, char color[]) {
+void DrawPoint(Mat img, int x, int y, char const* color) {
   if (color == "blue") {
     img.at<Vec3b>(Point(x, y))[0] = 255;
     img.at<Vec3b>(Point(x, y))[1] = 0;
@@ -135,9 +97,8 @@ void DrawPoint(Mat img, int x, int y, char color[]) {
 }
 
 //![drawLine]
-void DrawLine(Mat img, int x0, int y0, int x1, int y1, char color[]) {
+void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
   // Bresenham's algorithm
-
   int dx = x1 - x0;
   int dy = y1 - y0;
 
@@ -177,8 +138,6 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char color[]) {
       octant = 6;
     }
   }
-
-  std::cout << "OCTANT = " << octant << std::endl;
 
   switch(octant) {
     case 0:
@@ -271,8 +230,7 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char color[]) {
   }
 }
 
-void FloodFill(Mat img, int x, int y, char old_color[], char replacement_color[]) {
-  // bool point_in_poly = PointInPolygon()
+void FloodFill(Mat img, int x, int y, char const* old_color, char const* replacement_color) {
   int old[3] = {0,0,0};
   if (old_color == "blue") {
     old[0] = 255;
@@ -327,19 +285,54 @@ void FloodFill(Mat img, int x, int y, char old_color[], char replacement_color[]
   return;
 }
 
-bool PointInPolygon(int poly_corners, int poly_x[], int poly_y[], int x, int y) {
-  int j = poly_corners - 1;
-  bool odd_nodes = false;
-
-  for (int i = 0; i < poly_corners; i++) {
-    std::cout << "Current poly_x = " << poly_x[i] << std::endl;
-    std::cout << "Current poly_y = " << poly_y[i] << std::endl;
-    if (poly_y[i] < y && poly_y[j]>=y || poly_y[j]<y && poly_y[i]>=y) {
-      if (poly_x[i] + (y - poly_y[i])/(poly_y[j]-poly_y[i])*(poly_x[j]-poly_x[i]) < x) {
-        odd_nodes = !odd_nodes;
-      }
-    }
-    j = i;
+// from: http://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
+int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy) {
+  int i, j, c = 0;
+  for (i = 0, j = nvert-1; i < nvert; j = i++) {
+    if ( ((verty[i]>testy) != (verty[j]>testy)) &&
+     (testx < (vertx[j]-vertx[i]) * (testy-verty[i]) / (verty[j]-verty[i]) + vertx[i]) )
+       c = !c;
   }
-  return odd_nodes;
+  return c;
+}
+
+int *FindPointInPolygon(int point[], int poly_corners, int points_x_vals[], int points_y_vals[]) {
+  std::cout << "Finding a point in the given polygon" << std::endl;
+  std::cout << *std::max_element(points_x_vals, points_x_vals + poly_corners) << std::endl;
+  std::cout << *std::max_element(points_y_vals, points_y_vals + poly_corners) << std::endl;
+  int max_x = *std::max_element(points_x_vals, points_x_vals + poly_corners);
+  int max_y = *std::max_element(points_y_vals, points_y_vals + poly_corners);
+  int min_x = *std::min_element(points_x_vals, points_x_vals + poly_corners);
+  int min_y = *std::min_element(points_y_vals, points_y_vals + poly_corners);
+  int del_x = max_x - min_x;
+  int del_y = max_y - min_y;
+  while (!PointInPolygon(poly_corners, points_x_vals, points_y_vals, point[0], point[1])) {
+    point[0] = rand() % del_x + min_x;
+    point[1] = rand() % del_y + min_y;
+  }
+  return point;
+}
+
+void DrawPolygon(Mat img, int points[][2], int poly_corners, char const* outline_color, char const* fill_color) {
+  std::cout << "DRAWING POLYGON" << std::endl;
+  // X values
+  int points_x_vals[poly_corners];
+  for (int i = 0; i < sizeof(points_x_vals)/sizeof(*points_x_vals); i++) {
+    points_x_vals[i] = points[i][0];
+  }
+  // Y values
+  int points_y_vals[poly_corners];
+  for (int i = 0; i < sizeof(points_y_vals)/sizeof(*points_x_vals); i++) {
+    points_y_vals[i] = points[i][1];
+  }
+
+  for (int i = 0; i < poly_corners - 1; i++) {
+    DrawLine(img, points[i][0], points[i][1], points[i+1][0], points[i+1][1], outline_color);
+  }
+
+  int point[2] = {-1,-1};
+  FindPointInPolygon(point, poly_corners, points_x_vals, points_y_vals);
+  int fill_x = (int)point[0]; // 250
+  int fill_y = (int)point[1]; // 350
+  FloodFill(img, fill_x, fill_y, "white", fill_color);
 }
