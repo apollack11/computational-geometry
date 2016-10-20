@@ -24,7 +24,7 @@ int main(void){
   char polygon_window[] = "Polygon Drawing";
 
   /// Create black empty images
-  Mat polygon_image = Mat::zeros(720, 1280, CV_8UC3);
+  Mat polygon_image = Mat::zeros(950, 1280, CV_8UC3);
   polygon_image.setTo(cv::Scalar(255,255,255));
   //![create_images]
 
@@ -64,14 +64,28 @@ int main(void){
   // number of points
   int poly_corners3 = sizeof(polygon3)/sizeof(polygon3[0]);
 
+  int polygon4[8][2] = {
+    {150,300},
+    {450,300},
+    {570,525},
+    {653,780},
+    {495,845},
+    {350,740},
+    {100,345},
+    {150,300}
+  };
+  // number of points
+  int poly_corners4 = sizeof(polygon4)/sizeof(polygon4[0]);
+
   // DRAWING POLYGONS
-  DrawPolygon(polygon_image, polygon1, poly_corners1, "red", "green");
-  DrawPolygon(polygon_image, polygon2, poly_corners2, "blue", "red");
-  DrawPolygon(polygon_image, polygon3, poly_corners3, "green", "blue");
+  // DrawPolygon(polygon_image, polygon1, poly_corners1, "red", "green");
+  // DrawPolygon(polygon_image, polygon2, poly_corners2, "blue", "red");
+  // DrawPolygon(polygon_image, polygon3, poly_corners3, "green", "blue");
+  DrawPolygon(polygon_image, polygon4, poly_corners4, "red", "blue");
 
   // display images in windows
   imshow(polygon_window, polygon_image);
-  moveWindow(polygon_window, 0, 100);
+  moveWindow(polygon_window, 0, 0);
 
   waitKey(0);
   return(0);
@@ -139,6 +153,8 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
     }
   }
 
+  std::cout << "OCTANT" << octant << std::endl;
+
   switch(octant) {
     case 0:
       break;
@@ -160,7 +176,7 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
       break;
     case 3:
       x0 = -x0;
-      y0 = -y0;
+      x1 = -x1;
       break;
     case 4:
       x0 = -x0;
@@ -190,8 +206,17 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
       break;
   }
 
+  std::cout << "x0 = " << x0 << std::endl;
+  std::cout << "y0 = " << y0 << std::endl;
+  std::cout << "x1 = " << x1 << std::endl;
+  std::cout << "y1 = " << y1 << std::endl;
+
   dx = x1 - x0;
   dy = y1 - y0;
+
+  std::cout << "dx = " << dx << std::endl;
+  std::cout << "dy = " << dy << std::endl;
+
   int D = 2*dy - dx;
   int y = y0;
 
@@ -315,24 +340,34 @@ int *FindPointInPolygon(int point[], int poly_corners, int points_x_vals[], int 
 
 void DrawPolygon(Mat img, int points[][2], int poly_corners, char const* outline_color, char const* fill_color) {
   std::cout << "DRAWING POLYGON" << std::endl;
+  std::cout << "POLY CORNERS IS " << poly_corners << std::endl;
   // X values
   int points_x_vals[poly_corners];
   for (int i = 0; i < sizeof(points_x_vals)/sizeof(*points_x_vals); i++) {
     points_x_vals[i] = points[i][0];
   }
+  std::cout << "Size of X VALS" << sizeof(points_x_vals)/sizeof(*points_x_vals) << std::endl;
   // Y values
   int points_y_vals[poly_corners];
   for (int i = 0; i < sizeof(points_y_vals)/sizeof(*points_x_vals); i++) {
     points_y_vals[i] = points[i][1];
   }
+  std::cout << "Size of Y VALS" << sizeof(points_y_vals)/sizeof(*points_y_vals) << std::endl;
 
   for (int i = 0; i < poly_corners - 1; i++) {
+    std::cout << "DRAWING LINE #" << i + 1 << std::endl;
+    std::cout << "points[i][0] =" << points[i][0] << std::endl;
+    std::cout << "points[i][1] =" << points[i][1] << std::endl;
+    std::cout << "points[i+1][0] =" << points[i+1][0] << std::endl;
+    std::cout << "points[i+1][1] =" << points[i+1][1] << std::endl;
     DrawLine(img, points[i][0], points[i][1], points[i+1][0], points[i+1][1], outline_color);
   }
 
+  std::cout << "DREW LINES" << std::endl;
+
   int point[2] = {-1,-1};
   FindPointInPolygon(point, poly_corners, points_x_vals, points_y_vals);
-  int fill_x = (int)point[0]; // 250
-  int fill_y = (int)point[1]; // 350
+  int fill_x = (int)point[0];
+  int fill_y = (int)point[1];
   FloodFill(img, fill_x, fill_y, "white", fill_color);
 }
