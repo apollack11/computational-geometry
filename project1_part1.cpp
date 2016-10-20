@@ -9,10 +9,13 @@ using namespace cv;
 /// Function headers
 void DrawPoint(Mat img, int x, int y, char const* color);
 void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color);
-void FloodFill(Mat img, int x, int y, char const* old_color, char const* replacement_color);
+void FloodFill(Mat img, int x, int y, char const* outline_color, char const* replacement_color);
 int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy);
 int *FindPointInPolygon(float point[], int poly_corners, int points_x_vals[], int points_y_vals[]);
+int *FindPointInUniquePolygon(int point[], int poly_corners1, int polygon1_x_vals[], int polygon1_y_vals[], int poly_corners2, int polygon2_x_vals[], int polygon2_y_vals[]);
 void DrawPolygon(Mat img, int points[][2], int poly_corners, char const* outline_color, char const* fill_color);
+void DrawUnion(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2], int poly_corners2, char const* outline_color, char const* fill_color);
+void DrawIntersection(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2], int poly_corners2, char const* outline_color, char const* fill_color);
 
 /**
  * @function main
@@ -77,11 +80,25 @@ int main(void){
   // number of points
   int poly_corners4 = sizeof(polygon4)/sizeof(polygon4[0]);
 
+  int polygon5[7][2] = {
+    {285,420},
+    {500,225},
+    {831,543},
+    {625,695},
+    {444,710},
+    {285,555},
+    {285,420}
+  };
+  // number of points
+  int poly_corners5 = sizeof(polygon5)/sizeof(polygon5[0]);
+
   // DRAWING POLYGONS
-  // DrawPolygon(polygon_image, polygon1, poly_corners1, "red", "green");
-  // DrawPolygon(polygon_image, polygon2, poly_corners2, "blue", "red");
+  // DrawPolygon(polygon_image, polygon1, poly_corners1, "green", "red");
+  // DrawPolygon(polygon_image, polygon2, poly_corners2, "red", "green");
   // DrawPolygon(polygon_image, polygon3, poly_corners3, "green", "blue");
-  DrawPolygon(polygon_image, polygon4, poly_corners4, "red", "blue");
+  // DrawPolygon(polygon_image, polygon4, poly_corners4, "blue", "blue");
+  // DrawPolygon(polygon_image, polygon5, poly_corners5, "red", "red");
+  DrawUnion(polygon_image, polygon4, poly_corners4, polygon5, poly_corners5, "red", "red");
 
   // display images in windows
   imshow(polygon_window, polygon_image);
@@ -153,7 +170,7 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
     }
   }
 
-  std::cout << "OCTANT" << octant << std::endl;
+  // std::cout << "OCTANT" << octant << std::endl;
 
   switch(octant) {
     case 0:
@@ -206,17 +223,8 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
       break;
   }
 
-  std::cout << "x0 = " << x0 << std::endl;
-  std::cout << "y0 = " << y0 << std::endl;
-  std::cout << "x1 = " << x1 << std::endl;
-  std::cout << "y1 = " << y1 << std::endl;
-
   dx = x1 - x0;
   dy = y1 - y0;
-
-  std::cout << "dx = " << dx << std::endl;
-  std::cout << "dy = " << dy << std::endl;
-
   int D = 2*dy - dx;
   int y = y0;
 
@@ -255,27 +263,30 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, char const* color) {
   }
 }
 
-void FloodFill(Mat img, int x, int y, char const* old_color, char const* replacement_color) {
-  int old[3] = {0,0,0};
-  if (old_color == "blue") {
-    old[0] = 255;
-    old[1] = 0;
-    old[2] = 0;
+void FloodFill(Mat img, int x, int y, char const* outline_color, char const* replacement_color) {
+  // std::cout << "FLOODFILL" << std::endl;
+  // std::cout << "x = " << x << std::endl;
+  // std::cout << "y = " << y << std::endl;
+  int outline[3] = {0,0,0};
+  if (outline_color == "blue") {
+    outline[0] = 255;
+    outline[1] = 0;
+    outline[2] = 0;
   }
-  if (old_color == "green") {
-    old[0] = 0;
-    old[1] = 255;
-    old[2] = 0;
+  if (outline_color == "green") {
+    outline[0] = 0;
+    outline[1] = 255;
+    outline[2] = 0;
   }
-  if (old_color == "red") {
-    old[0] = 0;
-    old[1] = 0;
-    old[2] = 255;
+  if (outline_color == "red") {
+    outline[0] = 0;
+    outline[1] = 0;
+    outline[2] = 255;
   }
-  if (old_color == "white") {
-    old[0] = 255;
-    old[1] = 255;
-    old[2] = 255;
+  if (outline_color == "white") {
+    outline[0] = 255;
+    outline[1] = 255;
+    outline[2] = 255;
   }
   int replacement[3] = {0,0,0};
   if (replacement_color == "blue") {
@@ -293,20 +304,26 @@ void FloodFill(Mat img, int x, int y, char const* old_color, char const* replace
     replacement[1] = 0;
     replacement[2] = 255;
   }
-  if (old_color == replacement_color) {
-    std::cout << "old_color is the same as replacement_color" << std::endl;
+  // if (outline_color == replacement_color) {
+  //   std::cout << "old_color is the same as replacement_color" << std::endl;
+  //   return;
+  // }
+  if (img.at<Vec3b>(Point(x, y))[0] == replacement[0] && img.at<Vec3b>(Point(x, y))[1] == replacement[1] && img.at<Vec3b>(Point(x, y))[2] == replacement[2]) {
     return;
   }
-  else if (img.at<Vec3b>(Point(x, y))[0] != old[0] || img.at<Vec3b>(Point(x, y))[1] != old[1] || img.at<Vec3b>(Point(x, y))[2] != old[2]) {
+  else if (img.at<Vec3b>(Point(x, y))[0] == outline[0] && img.at<Vec3b>(Point(x, y))[1] == outline[1] && img.at<Vec3b>(Point(x, y))[2] == outline[2]) {
     return;
   }
+  // else if (img.at<Vec3b>(Point(x, y))[0] != old[0] || img.at<Vec3b>(Point(x, y))[1] != old[1] || img.at<Vec3b>(Point(x, y))[2] != old[2]) {
+  //   return;
+  // }
   img.at<Vec3b>(Point(x, y))[0] = replacement[0];
   img.at<Vec3b>(Point(x, y))[1] = replacement[1];
   img.at<Vec3b>(Point(x, y))[2] = replacement[2];
-  FloodFill(img, x, y-1, old_color, replacement_color);
-  FloodFill(img, x, y+1, old_color, replacement_color);
-  FloodFill(img, x-1, y, old_color, replacement_color);
-  FloodFill(img, x+1, y, old_color, replacement_color);
+  FloodFill(img, x, y-1, outline_color, replacement_color);
+  FloodFill(img, x, y+1, outline_color, replacement_color);
+  FloodFill(img, x-1, y, outline_color, replacement_color);
+  FloodFill(img, x+1, y, outline_color, replacement_color);
   return;
 }
 
@@ -323,8 +340,6 @@ int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy) {
 
 int *FindPointInPolygon(int point[], int poly_corners, int points_x_vals[], int points_y_vals[]) {
   std::cout << "Finding a point in the given polygon" << std::endl;
-  std::cout << *std::max_element(points_x_vals, points_x_vals + poly_corners) << std::endl;
-  std::cout << *std::max_element(points_y_vals, points_y_vals + poly_corners) << std::endl;
   int max_x = *std::max_element(points_x_vals, points_x_vals + poly_corners);
   int max_y = *std::max_element(points_y_vals, points_y_vals + poly_corners);
   int min_x = *std::min_element(points_x_vals, points_x_vals + poly_corners);
@@ -338,36 +353,103 @@ int *FindPointInPolygon(int point[], int poly_corners, int points_x_vals[], int 
   return point;
 }
 
-void DrawPolygon(Mat img, int points[][2], int poly_corners, char const* outline_color, char const* fill_color) {
+int *FindPointInUniquePolygon(int point[], int poly_corners1, int polygon1_x_vals[], int polygon1_y_vals[], int poly_corners2, int polygon2_x_vals[], int polygon2_y_vals[]) {
+  std::cout << "Finding a point the second polygon that is not in the first" << std::endl;
+  int max_x = *std::max_element(polygon2_x_vals, polygon2_x_vals + poly_corners2);
+  int max_y = *std::max_element(polygon2_y_vals, polygon2_y_vals + poly_corners2);
+  int min_x = *std::min_element(polygon2_x_vals, polygon2_x_vals + poly_corners2);
+  int min_y = *std::min_element(polygon2_y_vals, polygon2_y_vals + poly_corners2);
+  int del_x = max_x - min_x;
+  int del_y = max_y - min_y;
+  while (!PointInPolygon(poly_corners2, polygon2_x_vals, polygon2_y_vals, point[0], point[1]) || PointInPolygon(poly_corners1, polygon1_x_vals, polygon1_y_vals, point[0], point[1])) {
+    point[0] = rand() % del_x + min_x;
+    point[1] = rand() % del_y + min_y;
+  }
+  return point;
+}
+
+// Draws the outline and fills a polygon given a set of coordinates for the polygon corners
+void DrawPolygon(Mat img, int polygon[][2], int poly_corners, char const* outline_color, char const* fill_color) {
   std::cout << "DRAWING POLYGON" << std::endl;
   std::cout << "POLY CORNERS IS " << poly_corners << std::endl;
+
+  // Draw lines to create polygon
+  for (int i = 0; i < poly_corners - 1; i++) {
+    std::cout << "DRAWING LINE #" << i + 1 << std::endl;
+    DrawLine(img, polygon[i][0], polygon[i][1], polygon[i+1][0], polygon[i+1][1], outline_color);
+  }
   // X values
   int points_x_vals[poly_corners];
   for (int i = 0; i < sizeof(points_x_vals)/sizeof(*points_x_vals); i++) {
-    points_x_vals[i] = points[i][0];
+    points_x_vals[i] = polygon[i][0];
   }
-  std::cout << "Size of X VALS" << sizeof(points_x_vals)/sizeof(*points_x_vals) << std::endl;
   // Y values
   int points_y_vals[poly_corners];
   for (int i = 0; i < sizeof(points_y_vals)/sizeof(*points_x_vals); i++) {
-    points_y_vals[i] = points[i][1];
+    points_y_vals[i] = polygon[i][1];
   }
-  std::cout << "Size of Y VALS" << sizeof(points_y_vals)/sizeof(*points_y_vals) << std::endl;
-
-  for (int i = 0; i < poly_corners - 1; i++) {
-    std::cout << "DRAWING LINE #" << i + 1 << std::endl;
-    std::cout << "points[i][0] =" << points[i][0] << std::endl;
-    std::cout << "points[i][1] =" << points[i][1] << std::endl;
-    std::cout << "points[i+1][0] =" << points[i+1][0] << std::endl;
-    std::cout << "points[i+1][1] =" << points[i+1][1] << std::endl;
-    DrawLine(img, points[i][0], points[i][1], points[i+1][0], points[i+1][1], outline_color);
-  }
-
-  std::cout << "DREW LINES" << std::endl;
 
   int point[2] = {-1,-1};
+  // Find a point in the selected polygon to fill from
   FindPointInPolygon(point, poly_corners, points_x_vals, points_y_vals);
   int fill_x = (int)point[0];
   int fill_y = (int)point[1];
-  FloodFill(img, fill_x, fill_y, "white", fill_color);
+  std::cout << fill_x << std::endl;
+  std::cout << fill_y << std::endl;
+  FloodFill(img, fill_x, fill_y, outline_color, fill_color);
+}
+
+// Draws the union of two polygons given two sets of points describing the corners of two polygons
+void DrawUnion(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2], int poly_corners2, char const* outline_color, char const* fill_color) {
+  // Draw the union of the two polygons as one color
+  // Draw First Polygon
+  DrawPolygon(img, polygon1, poly_corners1, outline_color, fill_color);
+
+  // Manually draw second polygon finding a point to fill which is not also in polygon1
+  std::cout << "DRAWING POLYGON" << std::endl;
+  std::cout << "POLY CORNERS IS " << poly_corners2 << std::endl;
+
+  for (int i = 0; i < poly_corners2 - 1; i++) {
+    std::cout << "DRAWING LINE #" << i + 1 << std::endl;
+    DrawLine(img, polygon2[i][0], polygon2[i][1], polygon2[i+1][0], polygon2[i+1][1], outline_color);
+  }
+
+  std::cout << "FILLING POLYGON" << poly_corners2 << std::endl;
+
+  // Polygon 1 X values
+  int polygon1_x_vals[poly_corners1];
+  for (int i = 0; i < sizeof(polygon1_x_vals)/sizeof(*polygon1_x_vals); i++) {
+    polygon1_x_vals[i] = polygon1[i][0];
+  }
+
+  // Poylgon 1 Y values
+  int polygon1_y_vals[poly_corners1];
+  for (int i = 0; i < sizeof(polygon1_y_vals)/sizeof(*polygon1_y_vals); i++) {
+    polygon1_y_vals[i] = polygon1[i][1];
+  }
+
+  // Polygon 2 X values
+  int polygon2_x_vals[poly_corners2];
+  for (int i = 0; i < sizeof(polygon2_x_vals)/sizeof(*polygon2_x_vals); i++) {
+    polygon2_x_vals[i] = polygon2[i][0];
+  }
+
+  // Polygon 2 Y values
+  int polygon2_y_vals[poly_corners2];
+  for (int i = 0; i < sizeof(polygon2_y_vals)/sizeof(*polygon2_y_vals); i++) {
+    polygon2_y_vals[i] = polygon2[i][1];
+  }
+
+  int point[2] = {-1,-1};
+  // Find a point that is in polygon2 but not polygon1 so we can fill the remainder of the union
+  FindPointInUniquePolygon(point, poly_corners1, polygon1_x_vals, polygon1_y_vals, poly_corners2, polygon2_x_vals, polygon2_y_vals);
+  int fill_x = (int)point[0];
+  int fill_y = (int)point[1];
+  std::cout << fill_x << std::endl;
+  std::cout << fill_y << std::endl;
+  FloodFill(img, fill_x, fill_y, outline_color, fill_color);
+}
+
+void DrawIntersection(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2], int poly_corners2, char const* outline_color, char const* fill_color) {
+  // Draw the the intersection of the two polygons as the color of the left-most polygon
 }
