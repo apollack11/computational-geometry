@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/adam/github/computational-geometry/geofunctions.cpp
-geofunctions.h
-/home/adam/github/computational-geometry/geofunctions.h
-
 /home/adam/github/computational-geometry/geofunctions.h
 opencv2/core.hpp
 -
@@ -31,6 +27,10 @@ sstream
 -
 cstring
 -
+
+/home/adam/github/computational-geometry/polygon_intersection.cpp
+geofunctions.h
+/home/adam/github/computational-geometry/geofunctions.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

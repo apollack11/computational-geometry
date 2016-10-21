@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
   std::vector<std::vector<int> > polygon1;
   std::vector<std::vector<int> > polygon2;
 
-  InputFile(polygon1, polygon2, "input2.txt");
+  InputFile(polygon1, polygon2, file);
 
   // Draw union of the two polygons
   DrawUnion(polygon_image, polygon1, polygon2, RED, RED);
