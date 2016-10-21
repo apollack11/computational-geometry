@@ -13,7 +13,7 @@
 #include <cstring>
 
 enum Colors {BLUE, GREEN, RED};
-void DrawPoint(cv::Mat &img, int x, int y, int color);
+void DrawPoint(cv::Mat img, int x, int y, int color);
 void DrawLine(cv::Mat img, int x0, int y0, int x1, int y1, int color);
 void FloodFill(cv::Mat img, int x, int y, int outline_color, int replacement_color);
 int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy);

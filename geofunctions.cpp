@@ -1,30 +1,28 @@
 #include "geofunctions.h"
 
-using namespace cv;
-
 //![drawPoint]
-void DrawPoint(Mat &img, int x, int y, int color) {
+void DrawPoint(cv::Mat img, int x, int y, int color) {
   switch(color) {
     case BLUE:
-      img.at<Vec3b>(Point(x, y))[0] = 255;
-      img.at<Vec3b>(Point(x, y))[1] = 0;
-      img.at<Vec3b>(Point(x, y))[2] = 0;
+      img.at<cv::Vec3b>(cv::Point(x, y))[0] = 255;
+      img.at<cv::Vec3b>(cv::Point(x, y))[1] = 0;
+      img.at<cv::Vec3b>(cv::Point(x, y))[2] = 0;
       break;
     case GREEN:
-      img.at<Vec3b>(Point(x, y))[0] = 0;
-      img.at<Vec3b>(Point(x, y))[1] = 255;
-      img.at<Vec3b>(Point(x, y))[2] = 0;
+      img.at<cv::Vec3b>(cv::Point(x, y))[0] = 0;
+      img.at<cv::Vec3b>(cv::Point(x, y))[1] = 255;
+      img.at<cv::Vec3b>(cv::Point(x, y))[2] = 0;
       break;
     case RED:
-      img.at<Vec3b>(Point(x, y))[0] = 0;
-      img.at<Vec3b>(Point(x, y))[1] = 0;
-      img.at<Vec3b>(Point(x, y))[2] = 255;
+      img.at<cv::Vec3b>(cv::Point(x, y))[0] = 0;
+      img.at<cv::Vec3b>(cv::Point(x, y))[1] = 0;
+      img.at<cv::Vec3b>(cv::Point(x, y))[2] = 255;
       break;
   }
 }
 
 //![drawLine]
-void DrawLine(Mat img, int x0, int y0, int x1, int y1, int color) {
+void DrawLine(cv::Mat img, int x0, int y0, int x1, int y1, int color) {
   // Bresenham's algorithm
   int dx = x1 - x0;
   int dy = y1 - y0;
@@ -157,7 +155,7 @@ void DrawLine(Mat img, int x0, int y0, int x1, int y1, int color) {
   }
 }
 
-void FloodFill(Mat img, int x, int y, int outline_color, int replacement_color) {
+void FloodFill(cv::Mat img, int x, int y, int outline_color, int replacement_color) {
   // std::cout << "FLOODFILL" << std::endl;
   // std::cout << "x = " << x << std::endl;
   // std::cout << "y = " << y << std::endl;
@@ -201,18 +199,18 @@ void FloodFill(Mat img, int x, int y, int outline_color, int replacement_color) 
   //   std::cout << "old_color is the same as replacement_color" << std::endl;
   //   return;
   // }
-  if (img.at<Vec3b>(Point(x, y))[0] == replacement[0] && img.at<Vec3b>(Point(x, y))[1] == replacement[1] && img.at<Vec3b>(Point(x, y))[2] == replacement[2]) {
+  if (img.at<cv::Vec3b>(cv::Point(x, y))[0] == replacement[0] && img.at<cv::Vec3b>(cv::Point(x, y))[1] == replacement[1] && img.at<cv::Vec3b>(cv::Point(x, y))[2] == replacement[2]) {
     return;
   }
-  else if (img.at<Vec3b>(Point(x, y))[0] == outline[0] && img.at<Vec3b>(Point(x, y))[1] == outline[1] && img.at<Vec3b>(Point(x, y))[2] == outline[2]) {
+  else if (img.at<cv::Vec3b>(cv::Point(x, y))[0] == outline[0] && img.at<cv::Vec3b>(cv::Point(x, y))[1] == outline[1] && img.at<cv::Vec3b>(cv::Point(x, y))[2] == outline[2]) {
     return;
   }
-  // else if (img.at<Vec3b>(Point(x, y))[0] != old[0] || img.at<Vec3b>(Point(x, y))[1] != old[1] || img.at<Vec3b>(Point(x, y))[2] != old[2]) {
+  // else if (img.at<cv::Vec3b>(cv::Point(x, y))[0] != old[0] || img.at<cv::Vec3b>(cv::Point(x, y))[1] != old[1] || img.at<cv::Vec3b>(cv::Point(x, y))[2] != old[2]) {
   //   return;
   // }
-  img.at<Vec3b>(Point(x, y))[0] = replacement[0];
-  img.at<Vec3b>(Point(x, y))[1] = replacement[1];
-  img.at<Vec3b>(Point(x, y))[2] = replacement[2];
+  img.at<cv::Vec3b>(cv::Point(x, y))[0] = replacement[0];
+  img.at<cv::Vec3b>(cv::Point(x, y))[1] = replacement[1];
+  img.at<cv::Vec3b>(cv::Point(x, y))[2] = replacement[2];
   FloodFill(img, x, y-1, outline_color, replacement_color);
   FloodFill(img, x, y+1, outline_color, replacement_color);
   FloodFill(img, x-1, y, outline_color, replacement_color);
@@ -277,7 +275,7 @@ int *FindPointInBothPolygons(int point[], int poly_corners1, int polygon1_x_vals
 }
 
 // Draws the outline and fills a polygon given a set of coordinates for the polygon corners
-void DrawPolygon(Mat img, std::vector<std::vector<int> > polygon, int outline_color, int fill_color) {
+void DrawPolygon(cv::Mat img, std::vector<std::vector<int> > polygon, int outline_color, int fill_color) {
   int poly_corners = polygon.size();
   // Draw lines to create polygon
   for (int i = 0; i < poly_corners - 1; i++) {
@@ -305,7 +303,7 @@ void DrawPolygon(Mat img, std::vector<std::vector<int> > polygon, int outline_co
 }
 
 // Draws the union of two polygons given two sets of points describing the corners of two polygons
-void DrawUnion(Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color, int fill_color) {
+void DrawUnion(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color, int fill_color) {
   std::cout << "DRAWING THE UNION OF TWO POLYGONS" << std::endl;
   // Draw the union of the two polygons as one color
   int poly_corners1 = polygon1.size();
@@ -350,7 +348,7 @@ void DrawUnion(Mat img, std::vector<std::vector<int> > polygon1, std::vector<std
   FloodFill(img, fill_x, fill_y, outline_color, fill_color);
 }
 
-void DrawIntersection(Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color1, int fill_color1, int outline_color2, int fill_color2) {
+void DrawIntersection(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color1, int fill_color1, int outline_color2, int fill_color2) {
   // Draw the the intersection of the two polygons as the color of the left-most polygon
   int poly_corners1 = polygon1.size();
   int poly_corners2 = polygon2.size();

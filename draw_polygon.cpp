@@ -1,7 +1,5 @@
 #include "geofunctions.h"
 
-using namespace cv;
-
 // Main function
 int main(int argc, char *argv[]) {
   //![create_images]
@@ -9,7 +7,7 @@ int main(int argc, char *argv[]) {
   char polygon_window[] = "Polygon Drawing";
 
   /// Create black empty images
-  Mat polygon_image = Mat::zeros(950, 1280, CV_8UC3);
+  cv::Mat polygon_image = cv::Mat::zeros(950, 1280, CV_8UC3);
   polygon_image.setTo(cv::Scalar(255,255,255));
   //![create_images]
 
@@ -34,9 +32,9 @@ int main(int argc, char *argv[]) {
   DrawPolygon(polygon_image, polygon1, GREEN, BLUE);
 
   // display images in windows
-  imshow(polygon_window, polygon_image);
-  moveWindow(polygon_window, 0, 0);
+  cv::imshow(polygon_window, polygon_image);
+  cv::moveWindow(polygon_window, 0, 0);
 
-  waitKey(0);
+  cv::waitKey(0);
   return(0);
 }
