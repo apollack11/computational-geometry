@@ -16,6 +16,10 @@ int main(void){
   polygon_image.setTo(cv::Scalar(255,255,255));
   //![create_images]
 
+  // Define polygons
+  std::vector<std::vector<int> > polygon1;
+  std::vector<std::vector<int> > polygon2;
+
   // create a file-reading object
   std::ifstream file;
   file.open("input2.txt"); // open a file
@@ -65,29 +69,26 @@ int main(void){
     std::cout << "num_vector: [" << i << "]" << num_vector[i] << std::endl;
   }
 
-  std::vector<std::vector<int> > polygon;
   for (int i = 0; i < num_vector.size() - 1; i = i+2) {
     std::cout << "i = " << i << std::endl;
     std::vector<int> temp;
     for (int j = 0; j < 2; j++) {
       temp.push_back(num_vector[i+j]);
     }
-    polygon.push_back(temp);
+    polygon1.push_back(temp);
   }
 
   // Add the first point as the last point to close the polygon
   std::vector<int> temp;
-  temp.push_back(polygon[0][0]);
-  temp.push_back(polygon[0][1]);
-  polygon.push_back(temp);
+  temp.push_back(polygon1[0][0]);
+  temp.push_back(polygon1[0][1]);
+  polygon1.push_back(temp);
 
-  for (int i = 0; i < polygon.size(); i++) {
-    for (int j = 0; j < polygon[i].size(); j++) {
-      std::cout << "polgyon: [" << i << "][" << j << "]" << polygon[i][j] << std::endl;
+  for (int i = 0; i < polygon1.size(); i++) {
+    for (int j = 0; j < polygon1[i].size(); j++) {
+      std::cout << "polgyon: [" << i << "][" << j << "]" << polygon1[i][j] << std::endl;
     }
   }
-
-  int poly_corners = polygon.size();
 
   if (second_poly) {
     std::cout << "move to 2nd polygon" << std::endl;
@@ -100,7 +101,6 @@ int main(void){
         num_vector2.push_back(val2);
       }
     }
-    std::vector<std::vector<int> > polygon2;
     for (int i = 0; i < num_vector2.size() - 1; i = i+2) {
       std::vector<int> temp;
       for (int j = 0; j < 2; j++) {
@@ -121,22 +121,8 @@ int main(void){
     }
   }
 
-  // POLYGON 1 Definition
-  int polygon1[8][2] = {
-    {150,300},
-    {450,300},
-    {570,525},
-    {653,780},
-    {495,845},
-    {350,740},
-    {100,345},
-    {150,300}
-  };
-  // Number of points constituting the polygon
-  int poly_corners1 = sizeof(polygon1)/sizeof(polygon1[0]);
-
   // Draw polygon
-  DrawPolygon(polygon_image, polygon, GREEN, BLUE);
+  DrawPolygon(polygon_image, polygon1, GREEN, BLUE);
 
   // display images in windows
   imshow(polygon_window, polygon_image);
