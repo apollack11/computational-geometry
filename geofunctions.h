@@ -22,5 +22,6 @@ int *FindPointInUniquePolygon(int point[], int poly_corners1, int polygon1_x_val
 void DrawPolygon(cv::Mat img, std::vector<std::vector<int> > polygon, int outline_color, int fill_color);
 void DrawUnion(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color, int fill_color);
 void DrawIntersection(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color1, int fill_color1, int outline_color2, int fill_color2);
+void InputFile(std::vector<std::vector<int> > &polygon1, std::vector<std::vector<int> > &polygon2, std::string file_name);
 
 #endif
