@@ -1,2 +1,0 @@
-set(HEADER_FILES geofunctions.h)
-add_library(geofunctions geofunctions.cpp ${HEADER_FILES})
