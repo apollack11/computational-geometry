@@ -19,8 +19,8 @@ void FloodFill(cv::Mat img, int x, int y, int outline_color, int replacement_col
 int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy);
 int *FindPointInPolygon(float point[], int poly_corners, int points_x_vals[], int points_y_vals[]);
 int *FindPointInUniquePolygon(int point[], int poly_corners1, int polygon1_x_vals[], int polygon1_y_vals[], int poly_corners2, int polygon2_x_vals[], int polygon2_y_vals[]);
-void DrawPolygon(cv::Mat img, std::vector<std::vector<int> > polygon, int poly_corners, int outline_color, int fill_color);
-void DrawUnion(cv::Mat img, std::vector<std::vector<int> > polygon1, int poly_corners1, std::vector<std::vector<int> > polygon2, int poly_corners2, int outline_color, int fill_color);
-void DrawIntersection(cv::Mat img, std::vector<std::vector<int> > polygon1, int poly_corners1, std::vector<std::vector<int> > polygon2, int poly_corners2, int outline_color1, int fill_color1, int outline_color2, int fill_color2);
+void DrawPolygon(cv::Mat img, std::vector<std::vector<int> > polygon, int outline_color, int fill_color);
+void DrawUnion(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color, int fill_color);
+void DrawIntersection(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color1, int fill_color1, int outline_color2, int fill_color2);
 
 #endif
