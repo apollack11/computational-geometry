@@ -156,9 +156,6 @@ void DrawLine(cv::Mat img, int x0, int y0, int x1, int y1, int color) {
 }
 
 void FloodFill(cv::Mat img, int x, int y, int outline_color, int replacement_color) {
-  // std::cout << "FLOODFILL" << std::endl;
-  // std::cout << "x = " << x << std::endl;
-  // std::cout << "y = " << y << std::endl;
   int outline[3] = {0,0,0};
   switch(outline_color) {
     case BLUE:
@@ -195,19 +192,12 @@ void FloodFill(cv::Mat img, int x, int y, int outline_color, int replacement_col
       replacement[2] = 255;
       break;
   }
-  // if (outline_color == replacement_color) {
-  //   std::cout << "old_color is the same as replacement_color" << std::endl;
-  //   return;
-  // }
   if (img.at<cv::Vec3b>(cv::Point(x, y))[0] == replacement[0] && img.at<cv::Vec3b>(cv::Point(x, y))[1] == replacement[1] && img.at<cv::Vec3b>(cv::Point(x, y))[2] == replacement[2]) {
     return;
   }
   else if (img.at<cv::Vec3b>(cv::Point(x, y))[0] == outline[0] && img.at<cv::Vec3b>(cv::Point(x, y))[1] == outline[1] && img.at<cv::Vec3b>(cv::Point(x, y))[2] == outline[2]) {
     return;
   }
-  // else if (img.at<cv::Vec3b>(cv::Point(x, y))[0] != old[0] || img.at<cv::Vec3b>(cv::Point(x, y))[1] != old[1] || img.at<cv::Vec3b>(cv::Point(x, y))[2] != old[2]) {
-  //   return;
-  // }
   img.at<cv::Vec3b>(cv::Point(x, y))[0] = replacement[0];
   img.at<cv::Vec3b>(cv::Point(x, y))[1] = replacement[1];
   img.at<cv::Vec3b>(cv::Point(x, y))[2] = replacement[2];
@@ -230,7 +220,6 @@ int PointInPolygon(int nvert, int *vertx, int *verty, int testx, int testy) {
 }
 
 int *FindPointInPolygon(int point[], int poly_corners, int points_x_vals[], int points_y_vals[]) {
-  std::cout << "Finding a point in the given polygon" << std::endl;
   int max_x = *std::max_element(points_x_vals, points_x_vals + poly_corners);
   int max_y = *std::max_element(points_y_vals, points_y_vals + poly_corners);
   int min_x = *std::min_element(points_x_vals, points_x_vals + poly_corners);
@@ -245,7 +234,6 @@ int *FindPointInPolygon(int point[], int poly_corners, int points_x_vals[], int 
 }
 
 int *FindPointInUniquePolygon(int point[], int poly_corners1, int polygon1_x_vals[], int polygon1_y_vals[], int poly_corners2, int polygon2_x_vals[], int polygon2_y_vals[]) {
-  std::cout << "Finding a point the second polygon that is not in the first" << std::endl;
   int max_x = *std::max_element(polygon2_x_vals, polygon2_x_vals + poly_corners2);
   int max_y = *std::max_element(polygon2_y_vals, polygon2_y_vals + poly_corners2);
   int min_x = *std::min_element(polygon2_x_vals, polygon2_x_vals + poly_corners2);
@@ -260,7 +248,6 @@ int *FindPointInUniquePolygon(int point[], int poly_corners1, int polygon1_x_val
 }
 
 int *FindPointInBothPolygons(int point[], int poly_corners1, int polygon1_x_vals[], int polygon1_y_vals[], int poly_corners2, int polygon2_x_vals[], int polygon2_y_vals[]) {
-  std::cout << "Finding a point the second polygon that is not in the first" << std::endl;
   int max_x = *std::max_element(polygon1_x_vals, polygon1_x_vals + poly_corners1);
   int max_y = *std::max_element(polygon1_y_vals, polygon1_y_vals + poly_corners1);
   int min_x = *std::min_element(polygon1_x_vals, polygon1_x_vals + poly_corners1);
@@ -297,14 +284,11 @@ void DrawPolygon(cv::Mat img, std::vector<std::vector<int> > polygon, int outlin
   FindPointInPolygon(point, poly_corners, points_x_vals, points_y_vals);
   int fill_x = (int)point[0];
   int fill_y = (int)point[1];
-  std::cout << fill_x << std::endl;
-  std::cout << fill_y << std::endl;
   FloodFill(img, fill_x, fill_y, outline_color, fill_color);
 }
 
 // Draws the union of two polygons given two sets of points describing the corners of two polygons
 void DrawUnion(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector<std::vector<int> > polygon2, int outline_color, int fill_color) {
-  std::cout << "DRAWING THE UNION OF TWO POLYGONS" << std::endl;
   // Draw the union of the two polygons as one color
   int poly_corners1 = polygon1.size();
   int poly_corners2 = polygon2.size();
@@ -343,8 +327,6 @@ void DrawUnion(cv::Mat img, std::vector<std::vector<int> > polygon1, std::vector
   FindPointInUniquePolygon(point, poly_corners1, polygon1_x_vals, polygon1_y_vals, poly_corners2, polygon2_x_vals, polygon2_y_vals);
   int fill_x = (int)point[0];
   int fill_y = (int)point[1];
-  std::cout << fill_x << std::endl;
-  std::cout << fill_y << std::endl;
   FloodFill(img, fill_x, fill_y, outline_color, fill_color);
 }
 
@@ -405,8 +387,6 @@ void DrawIntersection(cv::Mat img, std::vector<std::vector<int> > polygon1, std:
   FindPointInBothPolygons(point, poly_corners1, polygon1_x_vals, polygon1_y_vals, poly_corners2, polygon2_x_vals, polygon2_y_vals);
   int fill_x = (int)point[0];
   int fill_y = (int)point[1];
-  std::cout << fill_x << std::endl;
-  std::cout << fill_y << std::endl;
   FloodFill(img, fill_x, fill_y, outline_color, fill_color);
 
   // Re-draw polygon2 with accurate outline_color
@@ -429,13 +409,11 @@ void InputFile(std::vector<std::vector<int> > &polygon1, std::vector<std::vector
   std::vector<std::string> word_vector;
   while (file.good()) {
     std::getline(file, str);
-    std::cout << "Line String: " << str << std::endl;
     word_vector.push_back(str);
   }
 
   for (int i = 0; i < word_vector.size(); i++) {
     word_vector[i].erase(std::remove(word_vector[i].begin(), word_vector[i].end(), 'P'), word_vector[i].end());
-    std::cout << "word_vector: [" << i << "]" << word_vector[i] << std::endl;
   }
 
   int index;
@@ -446,11 +424,6 @@ void InputFile(std::vector<std::vector<int> > &polygon1, std::vector<std::vector
   for(int i=0; i<word_vector.size(); i++) {
     std::stringstream ss(word_vector[i]);
     ss >> delimiter1 >> val1 >> delimiter2 >> val2 >> delimiter3;
-    std::cout << "delimiter1: " << delimiter1 << std::endl;
-    std::cout << "val1: " << val1 << std::endl;
-    std::cout << "delimiter2: " << delimiter2 << std::endl;
-    std::cout << "val2: " << val2 << std::endl;
-    std::cout << "delimiter3: " << delimiter3 << std::endl;
     if (delimiter3 == ',' && i > 2) {
       second_poly = true;
       index = i;
@@ -462,12 +435,7 @@ void InputFile(std::vector<std::vector<int> > &polygon1, std::vector<std::vector
     }
   }
 
-  for (int i = 0; i < num_vector.size(); i++) {
-    std::cout << "num_vector: [" << i << "]" << num_vector[i] << std::endl;
-  }
-
   for (int i = 0; i < num_vector.size() - 1; i = i+2) {
-    std::cout << "i = " << i << std::endl;
     std::vector<int> temp;
     for (int j = 0; j < 2; j++) {
       temp.push_back(num_vector[i+j]);
@@ -481,14 +449,7 @@ void InputFile(std::vector<std::vector<int> > &polygon1, std::vector<std::vector
   temp.push_back(polygon1[0][1]);
   polygon1.push_back(temp);
 
-  for (int i = 0; i < polygon1.size(); i++) {
-    for (int j = 0; j < polygon1[i].size(); j++) {
-      std::cout << "polgyon: [" << i << "][" << j << "]" << polygon1[i][j] << std::endl;
-    }
-  }
-
   if (second_poly) {
-    std::cout << "move to 2nd polygon" << std::endl;
     std::vector<int> num_vector2;
     for(int i=index; i<word_vector.size(); i++) {
       std::stringstream ss(word_vector[i]);
@@ -510,11 +471,5 @@ void InputFile(std::vector<std::vector<int> > &polygon1, std::vector<std::vector
     temp2.push_back(polygon2[0][0]);
     temp2.push_back(polygon2[0][1]);
     polygon2.push_back(temp2);
-
-    for (int i = 0; i < polygon2.size(); i++) {
-      for (int j = 0; j < polygon2[i].size(); j++) {
-        std::cout << "polgyon2: [" << i << "][" << j << "]" << polygon2[i][j] << std::endl;
-      }
-    }
   }
 }
