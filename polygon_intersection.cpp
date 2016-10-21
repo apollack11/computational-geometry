@@ -2,11 +2,8 @@
 
 using namespace cv;
 
-/**
- * @function main
- * @brief Main function
- */
-int main(void){
+// Main function
+int main(int argc, char *argv[]) {
   //![create_images]
   /// Windows names
   char polygon_window[] = "Polygon Intersection";
@@ -15,6 +12,17 @@ int main(void){
   Mat polygon_image = Mat::zeros(950, 1280, CV_8UC3);
   polygon_image.setTo(cv::Scalar(255,255,255));
   //![create_images]
+
+  // Take in file name from command line argument
+  std::string file;
+  if (argc != 2) { // argc should be 2 for correct execution
+    std::cout << "Error: Incorrect amount of arguments for "<< argv[0] << std::endl;
+    std::cout << "Correct formatting: '" << argv[0] << " example.txt'" << std::endl;
+    return 1;
+  }
+  else {
+    file = argv[1];
+  }
 
   // Define polygons
   std::vector<std::vector<int> > polygon1;
