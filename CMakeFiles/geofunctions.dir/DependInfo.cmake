@@ -4,8 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/adam/github/computational-geometry/draw_polygon.cpp" "/home/adam/github/computational-geometry/CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o"
-  "/home/adam/github/computational-geometry/geofunctions.cpp" "/home/adam/github/computational-geometry/CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o"
+  "/home/adam/github/computational-geometry/geofunctions.cpp" "/home/adam/github/computational-geometry/CMakeFiles/geofunctions.dir/geofunctions.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,8 +14,6 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
-  "/usr/local/include/opencv"
-  "/usr/local/include"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

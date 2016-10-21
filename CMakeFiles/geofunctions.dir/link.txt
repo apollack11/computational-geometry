@@ -1,0 +1,2 @@
+/usr/bin/ar cr libgeofunctions.a  CMakeFiles/geofunctions.dir/geofunctions.cpp.o
+/usr/bin/ranlib libgeofunctions.a

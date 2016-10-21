@@ -4,8 +4,8 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/adam/github/computational-geometry/draw_polygon.cpp" "/home/adam/github/computational-geometry/CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o"
-  "/home/adam/github/computational-geometry/geofunctions.cpp" "/home/adam/github/computational-geometry/CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o"
+  "/home/adam/github/computational-geometry/geofunctions.cpp" "/home/adam/github/computational-geometry/CMakeFiles/PolygonUnion.dir/geofunctions.cpp.o"
+  "/home/adam/github/computational-geometry/polygon_union.cpp" "/home/adam/github/computational-geometry/CMakeFiles/PolygonUnion.dir/polygon_union.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

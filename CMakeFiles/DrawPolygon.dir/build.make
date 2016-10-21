@@ -49,37 +49,62 @@ include CMakeFiles/DrawPolygon.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DrawPolygon.dir/flags.make
 
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o: CMakeFiles/DrawPolygon.dir/flags.make
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o: project1_part1.cpp
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o: CMakeFiles/DrawPolygon.dir/flags.make
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o: geofunctions.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o -c /home/adam/github/computational-geometry/project1_part1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o -c /home/adam/github/computational-geometry/geofunctions.cpp
 
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DrawPolygon.dir/project1_part1.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/adam/github/computational-geometry/project1_part1.cpp > CMakeFiles/DrawPolygon.dir/project1_part1.cpp.i
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DrawPolygon.dir/geofunctions.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/adam/github/computational-geometry/geofunctions.cpp > CMakeFiles/DrawPolygon.dir/geofunctions.cpp.i
 
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DrawPolygon.dir/project1_part1.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/adam/github/computational-geometry/project1_part1.cpp -o CMakeFiles/DrawPolygon.dir/project1_part1.cpp.s
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DrawPolygon.dir/geofunctions.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/adam/github/computational-geometry/geofunctions.cpp -o CMakeFiles/DrawPolygon.dir/geofunctions.cpp.s
 
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.requires:
-.PHONY : CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.requires
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.requires:
+.PHONY : CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.requires
 
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.provides: CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.requires
-	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.provides.build
-.PHONY : CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.provides
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.provides: CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.requires
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.provides.build
+.PHONY : CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.provides
 
-CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.provides.build: CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o
+CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.provides.build: CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o
+
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o: CMakeFiles/DrawPolygon.dir/flags.make
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o: draw_polygon.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o -c /home/adam/github/computational-geometry/draw_polygon.cpp
+
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/adam/github/computational-geometry/draw_polygon.cpp > CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.i
+
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/adam/github/computational-geometry/draw_polygon.cpp -o CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.s
+
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.requires:
+.PHONY : CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.requires
+
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.provides: CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.requires
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.provides.build
+.PHONY : CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.provides
+
+CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.provides.build: CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o
 
 # Object files for target DrawPolygon
 DrawPolygon_OBJECTS = \
-"CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o"
+"CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o" \
+"CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o"
 
 # External object files for target DrawPolygon
 DrawPolygon_EXTERNAL_OBJECTS =
 
-DrawPolygon: CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o
+DrawPolygon: CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o
+DrawPolygon: CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o
 DrawPolygon: CMakeFiles/DrawPolygon.dir/build.make
 DrawPolygon: /usr/local/lib/libopencv_viz.so.3.1.0
 DrawPolygon: /usr/local/lib/libopencv_videostab.so.3.1.0
@@ -115,7 +140,8 @@ DrawPolygon: CMakeFiles/DrawPolygon.dir/link.txt
 CMakeFiles/DrawPolygon.dir/build: DrawPolygon
 .PHONY : CMakeFiles/DrawPolygon.dir/build
 
-CMakeFiles/DrawPolygon.dir/requires: CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o.requires
+CMakeFiles/DrawPolygon.dir/requires: CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o.requires
+CMakeFiles/DrawPolygon.dir/requires: CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o.requires
 .PHONY : CMakeFiles/DrawPolygon.dir/requires
 
 CMakeFiles/DrawPolygon.dir/clean:

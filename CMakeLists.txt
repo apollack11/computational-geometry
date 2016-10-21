@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 2.8)
 project( DrawPolygon )
 find_package( OpenCV REQUIRED )
-add_executable( DrawPolygon project1_part1.cpp )
+add_executable( DrawPolygon geofunctions.cpp draw_polygon.cpp )
 target_link_libraries( DrawPolygon ${OpenCV_LIBS} )
+
+project( PolygonUnion )
+find_package( OpenCV REQUIRED )
+add_executable( PolygonUnion geofunctions.cpp polygon_union.cpp )
+target_link_libraries( PolygonUnion ${OpenCV_LIBS} )
+
+project( PolygonIntersection )
+find_package( OpenCV REQUIRED )
+add_executable( PolygonIntersection geofunctions.cpp polygon_intersection.cpp )
+target_link_libraries( PolygonIntersection ${OpenCV_LIBS} )

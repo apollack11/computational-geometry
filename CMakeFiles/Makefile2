@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/adam/github/computational-geometry
 CMakeFiles/DrawPolygon.dir/all:
 	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/depend
 	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  1 2
 	@echo "Built target DrawPolygon"
 .PHONY : CMakeFiles/DrawPolygon.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/DrawPolygon.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/DrawPolygon.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DrawPolygon.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 0
 .PHONY : CMakeFiles/DrawPolygon.dir/rule
@@ -85,6 +85,76 @@ CMakeFiles/DrawPolygon.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/DrawPolygon.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/PolygonIntersection.dir
+
+# All Build rule for target.
+CMakeFiles/PolygonIntersection.dir/all:
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/depend
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  3 4
+	@echo "Built target PolygonIntersection"
+.PHONY : CMakeFiles/PolygonIntersection.dir/all
+
+# Include target in all.
+all: CMakeFiles/PolygonIntersection.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/PolygonIntersection.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PolygonIntersection.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 0
+.PHONY : CMakeFiles/PolygonIntersection.dir/rule
+
+# Convenience name for target.
+PolygonIntersection: CMakeFiles/PolygonIntersection.dir/rule
+.PHONY : PolygonIntersection
+
+# clean rule for target.
+CMakeFiles/PolygonIntersection.dir/clean:
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/clean
+.PHONY : CMakeFiles/PolygonIntersection.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/PolygonIntersection.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/PolygonUnion.dir
+
+# All Build rule for target.
+CMakeFiles/PolygonUnion.dir/all:
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/depend
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adam/github/computational-geometry/CMakeFiles  5 6
+	@echo "Built target PolygonUnion"
+.PHONY : CMakeFiles/PolygonUnion.dir/all
+
+# Include target in all.
+all: CMakeFiles/PolygonUnion.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/PolygonUnion.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PolygonUnion.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adam/github/computational-geometry/CMakeFiles 0
+.PHONY : CMakeFiles/PolygonUnion.dir/rule
+
+# Convenience name for target.
+PolygonUnion: CMakeFiles/PolygonUnion.dir/rule
+.PHONY : PolygonUnion
+
+# clean rule for target.
+CMakeFiles/PolygonUnion.dir/clean:
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/clean
+.PHONY : CMakeFiles/PolygonUnion.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/PolygonUnion.dir/clean
 .PHONY : clean
 
 #=============================================================================

@@ -1,5 +1,6 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o"
+  "CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o"
+  "CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o"
   "DrawPolygon.pdb"
   "DrawPolygon"
 )

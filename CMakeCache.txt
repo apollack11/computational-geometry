@@ -116,7 +116,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=DrawPolygon
+CMAKE_PROJECT_NAME:STATIC=PolygonIntersection
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -216,6 +216,27 @@ OpenCV_LIB_DIR_DBG:PATH=
 
 //Path where release OpenCV libraries are located
 OpenCV_LIB_DIR_OPT:PATH=
+
+//Value Computed by CMake
+PolygonIntersection_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+PolygonIntersection_SOURCE_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+PolygonUnion_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+PolygonUnion_SOURCE_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+Test_BINARY_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Value Computed by CMake
+Test_SOURCE_DIR:STATIC=/home/adam/github/computational-geometry
+
+//Dependencies for target
+geofunctions_LIB_DEPENDS:STATIC=
 
 
 ########################

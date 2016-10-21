@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/adam/github/computational-geometry/opencv-example1.cpp" "/home/adam/github/computational-geometry/CMakeFiles/DrawPoints.dir/opencv-example1.cpp.o"
+  "/home/adam/github/computational-geometry/project1_part1.cpp" "/home/adam/github/computational-geometry/CMakeFiles/Test.dir/project1_part1.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

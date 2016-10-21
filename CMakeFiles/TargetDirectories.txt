@@ -1,1 +1,3 @@
 /home/adam/github/computational-geometry/CMakeFiles/DrawPolygon.dir
+/home/adam/github/computational-geometry/CMakeFiles/PolygonIntersection.dir
+/home/adam/github/computational-geometry/CMakeFiles/PolygonUnion.dir

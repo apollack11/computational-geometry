@@ -111,29 +111,133 @@ DrawPolygon/fast:
 	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/build
 .PHONY : DrawPolygon/fast
 
-project1_part1.o: project1_part1.cpp.o
-.PHONY : project1_part1.o
+#=============================================================================
+# Target rules for targets named PolygonIntersection
+
+# Build rule for target.
+PolygonIntersection: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PolygonIntersection
+.PHONY : PolygonIntersection
+
+# fast build rule for target.
+PolygonIntersection/fast:
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/build
+.PHONY : PolygonIntersection/fast
+
+#=============================================================================
+# Target rules for targets named PolygonUnion
+
+# Build rule for target.
+PolygonUnion: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PolygonUnion
+.PHONY : PolygonUnion
+
+# fast build rule for target.
+PolygonUnion/fast:
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/build
+.PHONY : PolygonUnion/fast
+
+draw_polygon.o: draw_polygon.cpp.o
+.PHONY : draw_polygon.o
 
 # target to build an object file
-project1_part1.cpp.o:
-	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/project1_part1.cpp.o
-.PHONY : project1_part1.cpp.o
+draw_polygon.cpp.o:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.o
+.PHONY : draw_polygon.cpp.o
 
-project1_part1.i: project1_part1.cpp.i
-.PHONY : project1_part1.i
+draw_polygon.i: draw_polygon.cpp.i
+.PHONY : draw_polygon.i
 
 # target to preprocess a source file
-project1_part1.cpp.i:
-	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/project1_part1.cpp.i
-.PHONY : project1_part1.cpp.i
+draw_polygon.cpp.i:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.i
+.PHONY : draw_polygon.cpp.i
 
-project1_part1.s: project1_part1.cpp.s
-.PHONY : project1_part1.s
+draw_polygon.s: draw_polygon.cpp.s
+.PHONY : draw_polygon.s
 
 # target to generate assembly for a file
-project1_part1.cpp.s:
-	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/project1_part1.cpp.s
-.PHONY : project1_part1.cpp.s
+draw_polygon.cpp.s:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/draw_polygon.cpp.s
+.PHONY : draw_polygon.cpp.s
+
+geofunctions.o: geofunctions.cpp.o
+.PHONY : geofunctions.o
+
+# target to build an object file
+geofunctions.cpp.o:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/geofunctions.cpp.o
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/geofunctions.cpp.o
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/geofunctions.cpp.o
+.PHONY : geofunctions.cpp.o
+
+geofunctions.i: geofunctions.cpp.i
+.PHONY : geofunctions.i
+
+# target to preprocess a source file
+geofunctions.cpp.i:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/geofunctions.cpp.i
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/geofunctions.cpp.i
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/geofunctions.cpp.i
+.PHONY : geofunctions.cpp.i
+
+geofunctions.s: geofunctions.cpp.s
+.PHONY : geofunctions.s
+
+# target to generate assembly for a file
+geofunctions.cpp.s:
+	$(MAKE) -f CMakeFiles/DrawPolygon.dir/build.make CMakeFiles/DrawPolygon.dir/geofunctions.cpp.s
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/geofunctions.cpp.s
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/geofunctions.cpp.s
+.PHONY : geofunctions.cpp.s
+
+polygon_intersection.o: polygon_intersection.cpp.o
+.PHONY : polygon_intersection.o
+
+# target to build an object file
+polygon_intersection.cpp.o:
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/polygon_intersection.cpp.o
+.PHONY : polygon_intersection.cpp.o
+
+polygon_intersection.i: polygon_intersection.cpp.i
+.PHONY : polygon_intersection.i
+
+# target to preprocess a source file
+polygon_intersection.cpp.i:
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/polygon_intersection.cpp.i
+.PHONY : polygon_intersection.cpp.i
+
+polygon_intersection.s: polygon_intersection.cpp.s
+.PHONY : polygon_intersection.s
+
+# target to generate assembly for a file
+polygon_intersection.cpp.s:
+	$(MAKE) -f CMakeFiles/PolygonIntersection.dir/build.make CMakeFiles/PolygonIntersection.dir/polygon_intersection.cpp.s
+.PHONY : polygon_intersection.cpp.s
+
+polygon_union.o: polygon_union.cpp.o
+.PHONY : polygon_union.o
+
+# target to build an object file
+polygon_union.cpp.o:
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/polygon_union.cpp.o
+.PHONY : polygon_union.cpp.o
+
+polygon_union.i: polygon_union.cpp.i
+.PHONY : polygon_union.i
+
+# target to preprocess a source file
+polygon_union.cpp.i:
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/polygon_union.cpp.i
+.PHONY : polygon_union.cpp.i
+
+polygon_union.s: polygon_union.cpp.s
+.PHONY : polygon_union.s
+
+# target to generate assembly for a file
+polygon_union.cpp.s:
+	$(MAKE) -f CMakeFiles/PolygonUnion.dir/build.make CMakeFiles/PolygonUnion.dir/polygon_union.cpp.s
+.PHONY : polygon_union.cpp.s
 
 # Help Target
 help:
@@ -142,11 +246,22 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... DrawPolygon"
+	@echo "... PolygonIntersection"
+	@echo "... PolygonUnion"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... project1_part1.o"
-	@echo "... project1_part1.i"
-	@echo "... project1_part1.s"
+	@echo "... draw_polygon.o"
+	@echo "... draw_polygon.i"
+	@echo "... draw_polygon.s"
+	@echo "... geofunctions.o"
+	@echo "... geofunctions.i"
+	@echo "... geofunctions.s"
+	@echo "... polygon_intersection.o"
+	@echo "... polygon_intersection.i"
+	@echo "... polygon_intersection.s"
+	@echo "... polygon_union.o"
+	@echo "... polygon_union.i"
+	@echo "... polygon_union.s"
 .PHONY : help
 
 
