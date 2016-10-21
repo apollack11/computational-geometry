@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/adam/github/computational-geometry/geofunctions.cpp
+geofunctions.h
+/home/adam/github/computational-geometry/geofunctions.h
+
 /home/adam/github/computational-geometry/geofunctions.h
 opencv2/core.hpp
 -
@@ -16,6 +20,16 @@ opencv2/highgui.hpp
 iostream
 -
 stdlib.h
+-
+vector
+-
+iterator
+-
+fstream
+-
+sstream
+-
+cstring
 -
 
 /home/adam/github/computational-geometry/polygon_union.cpp

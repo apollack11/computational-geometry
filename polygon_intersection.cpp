@@ -44,7 +44,7 @@ int main(void){
   int poly_corners2 = sizeof(polygon2)/sizeof(polygon2[0]);
 
   // Draw intersection of the two polygons
-  DrawIntersection(polygon_image, polygon1, poly_corners1, polygon2, poly_corners2, BLUE, BLUE, RED, RED);
+  // DrawIntersection(polygon_image, polygon1, poly_corners1, polygon2, poly_corners2, BLUE, BLUE, RED, RED);
 
   // display images in windows
   imshow(polygon_window, polygon_image);

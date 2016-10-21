@@ -277,8 +277,7 @@ int *FindPointInBothPolygons(int point[], int poly_corners1, int polygon1_x_vals
 }
 
 // Draws the outline and fills a polygon given a set of coordinates for the polygon corners
-void DrawPolygon(Mat img, int polygon[][2], int poly_corners, int outline_color, int fill_color) {
-  std::cout << "PENIS" << std::endl;
+void DrawPolygon(Mat img, std::vector<std::vector<int> > polygon, int poly_corners, int outline_color, int fill_color) {
   // Draw lines to create polygon
   for (int i = 0; i < poly_corners - 1; i++) {
     DrawLine(img, polygon[i][0], polygon[i][1], polygon[i+1][0], polygon[i+1][1], outline_color);
@@ -305,7 +304,7 @@ void DrawPolygon(Mat img, int polygon[][2], int poly_corners, int outline_color,
 }
 
 // Draws the union of two polygons given two sets of points describing the corners of two polygons
-void DrawUnion(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2], int poly_corners2, int outline_color, int fill_color) {
+void DrawUnion(Mat img, std::vector<std::vector<int> > polygon1, int poly_corners1, std::vector<std::vector<int> > polygon2, int poly_corners2, int outline_color, int fill_color) {
   std::cout << "DRAWING THE UNION OF TWO POLYGONS" << std::endl;
   // Draw the union of the two polygons as one color
   // Draw First Polygon
@@ -347,7 +346,7 @@ void DrawUnion(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2],
   FloodFill(img, fill_x, fill_y, outline_color, fill_color);
 }
 
-void DrawIntersection(Mat img, int polygon1[][2], int poly_corners1, int polygon2[][2], int poly_corners2, int outline_color1, int fill_color1, int outline_color2, int fill_color2) {
+void DrawIntersection(Mat img, std::vector<std::vector<int> > polygon1, int poly_corners1, std::vector<std::vector<int> > polygon2, int poly_corners2, int outline_color1, int fill_color1, int outline_color2, int fill_color2) {
   // Draw the the intersection of the two polygons as the color of the left-most polygon
 
   int polygon1_x_vals[poly_corners1];

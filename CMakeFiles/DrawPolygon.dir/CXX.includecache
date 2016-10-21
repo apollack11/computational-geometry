@@ -21,6 +21,16 @@ iostream
 -
 stdlib.h
 -
+vector
+-
+iterator
+-
+fstream
+-
+sstream
+-
+cstring
+-
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

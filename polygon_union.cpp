@@ -41,7 +41,7 @@ int main(void){
   int poly_corners2 = sizeof(polygon2)/sizeof(polygon2[0]);
 
   // Draw union of the two polygons
-  DrawUnion(polygon_image, polygon1, poly_corners1, polygon2, poly_corners2, RED, RED);
+  // DrawUnion(polygon_image, polygon1, poly_corners1, polygon2, poly_corners2, RED, RED);
 
   // display images in windows
   imshow(polygon_window, polygon_image);

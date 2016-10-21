@@ -17,6 +17,16 @@ iostream
 -
 stdlib.h
 -
+vector
+-
+iterator
+-
+fstream
+-
+sstream
+-
+cstring
+-
 
 /home/adam/github/computational-geometry/polygon_intersection.cpp
 geofunctions.h
